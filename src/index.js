@@ -6,8 +6,11 @@ const LeagueRouter = require('./routes/LeagueRoute');
 
 const whiteList = ["http://localhost:8080", process.env.FRONTEND_URL];
 
+console.log(process.env.FRONTEND_URL);
+
 const corsOption = {
     origin: (origin, callback) => {
+        console.log("Origin from", origin);
         if(whiteList.indexOf(origin) !== -1){
             return callback(null, true);
         }
