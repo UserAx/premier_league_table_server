@@ -8,20 +8,13 @@ const whiteList = [process.env.FRONTEND_URL];
 
 const corsOption = {
     origin: (origin, callback) => {
-        console.log("Origin from", origin);
-        if(whiteList.indexOf(origin) !== -1){
+        if(origin === undefined || whiteList.indexOf(origin) !== -1){
             return callback(null, true);
         }
         callback(new Error("Cors not allowed"));
     },
     optionsSuccessStatus: 200
 }
-
-app.use(function (req, res, next) {
-    console.log(req.headers.origin, req.headers.host);
-    req.headers.origin = req.headers.origin || req.headers.host;
-    next();
-  });
 
 app.use(cors(corsOption));
 
