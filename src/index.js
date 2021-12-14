@@ -4,9 +4,7 @@ const app = express();
 const cors = require('cors');
 const LeagueRouter = require('./routes/LeagueRoute'); 
 
-const whiteList = ["http://localhost:8080", process.env.FRONTEND_URL];
-
-console.log(process.env.FRONTEND_URL);
+const whiteList = [process.env.FRONTEND_URL];
 
 const corsOption = {
     origin: (origin, callback) => {
@@ -18,6 +16,11 @@ const corsOption = {
     },
     optionsSuccessStatus: 200
 }
+
+app.use(function (req, res, next) {
+    req.headers.origin = req.headers.origin || req.headers.host;
+    next();
+  });
 
 app.use(cors(corsOption));
 
