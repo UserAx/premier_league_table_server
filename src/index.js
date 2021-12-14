@@ -18,7 +18,7 @@ const corsOption = {
 
 app.use(cors(corsOption));
 
-app.use(cors());
+// app.use(cors());
 app.use(express.json());
 app.use(LeagueRouter);
 
