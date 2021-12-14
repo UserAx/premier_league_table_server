@@ -4,19 +4,19 @@ const app = express();
 const cors = require('cors');
 const LeagueRouter = require('./routes/LeagueRoute'); 
 
-// const whiteList = ["http://localhost:8080"];
+const whiteList = ["http://localhost:8080", process.env.FRONTEND_URL];
 
-// const corsOption = {
-//     origin: (origin, callback) => {
-//         if(whiteList.indexOf(origin) !== -1){
-//             return callback(null, true);
-//         }
-//         callback(new Error("Cors not allowed"));
-//     },
-//     optionsSuccessStatus: 200
-// }
+const corsOption = {
+    origin: (origin, callback) => {
+        if(whiteList.indexOf(origin) !== -1){
+            return callback(null, true);
+        }
+        callback(new Error("Cors not allowed"));
+    },
+    optionsSuccessStatus: 200
+}
 
-// app.use(cors(corsOption));
+app.use(cors(corsOption));
 
 app.use(cors());
 app.use(express.json());
